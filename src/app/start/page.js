@@ -65,11 +65,8 @@ function StartGame() {
     try {
       const accounts = await connectAndFetchAccounts(provider)
       await contractInstance.methods.j2Timeout().send({ from: accounts[0] })
-      await showAlertAndReload(
-        'Success!',
-        'Funds successfully recovered!',
-        'success'
-      ).then(resetGameState)
+      showToast('Funds successfully recovered!', 'success')
+      resetGameState()
     } catch (error) {
       handleError(
         'An error occurred while recovering the funds: ' + error.message
@@ -294,13 +291,13 @@ function StartGame() {
               Check Winner
             </button>
             <br />
-            <button
+            {/* <button
               className='bg-[#8575FF] text-white p-4 m-4 rounded-full hover:bg-[#6145ff] transition duration-300 ease-in-out'
               disabled={!recoverAvailable}
               onClick={recoverFunds}
             >
               Recover ETH
-            </button>
+            </button> */}
           </div>
           {contractInstance && (
             <h1 className='text-center mt-10'>
